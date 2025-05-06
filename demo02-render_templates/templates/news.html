@@ -1,0 +1,15 @@
+{{ define "news.html"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>我是 {{ .title }} 页面</h2>
+    <p>后端传递的 Title 数据为: {{ .content.Title }}</p>
+    <p>后端传递的 Content 数据为: {{ .content.Content }}</p>
+  </body>
+</html>
+{{ end }}

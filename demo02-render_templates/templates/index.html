@@ -1,0 +1,51 @@
+{{define "index.html"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 会访问 http://localhost:8080/static/css/base.css 下的静态资源 -->
+    <link rel="stylesheet" href="/static/css/base.css"></link>
+  </head>
+  <body>
+    <!-- 引入公共头部，从而形成嵌套组件 -->
+    <!-- 并且可以将该组件中的所有数据传递给 header 子组件 -->
+    {{template "public/header.html" .}}
+
+    <h2>I'm {{.title}} Page!!!</h2>
+
+    <!-- 在模板中定义变量 -->
+    {{$t := .title}}
+    <br />
+    <h4>输出 $t 变量：{{$t}}</h4>
+
+    <!-- 条件判断，ge 表示左侧大于等于右侧 -->
+    {{if ge .score 60}}
+    <p>及格</p>
+    {{else}}
+    <p>不及格</p>
+    {{end}}
+
+    <!-- 使用 range 循环遍历数据 -->
+    <ul>
+      {{range $key, $value := .hobby}}
+      <li>{{$key}} -- {{$value}}</li>
+      {{else}}
+      <li>没有爱好数据</li>
+      {{end}}
+    </ul>
+
+    <!-- 使用 with 简化结构体属性的输出。注意，.news 是结构体类型 -->
+    {{with .news}}
+    <p>.news结构体中的 Title 属性：{{.Title}}</p>
+    <p>.news结构体中的 Content 属性：{{.Content}}</p>
+    {{end}}
+    <br />
+
+    <!-- 自定义模板函数：将时间戳转换为年月日时分秒的形式 -->
+    <p>时间戳：{{.timestamp}}</p>
+    <p>时间戳转换为日期形式：{{UnixToTime .timestamp}}</p>
+  </body>
+</html>
+{{ end }}
