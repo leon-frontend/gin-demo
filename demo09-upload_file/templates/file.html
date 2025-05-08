@@ -1,0 +1,19 @@
+{{define "templates/file.html"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{.title}}</h1>
+  <!-- 实现上传文件的表单 -->
+  <form action="/admin/uploadSingle/addFile" method="post" enctype="multipart/form-data">
+    用户名：<input type="text" name="username" placeholder="请输入用户名" /><br>
+    头像：<input type="file" name="avatar" /><br></br>
+    <input type="submit" value="提交">
+  </form>
+</body>
+</html>
+{{end}}
